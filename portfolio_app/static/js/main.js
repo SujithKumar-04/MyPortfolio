@@ -12,6 +12,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Initialize Bootstrap tooltips
     initTooltips();
+    
+    // Initialize animated background
+    initAnimatedBackground();
 });
 
 /**
@@ -73,4 +76,48 @@ function initTooltips() {
     tooltipTriggerList.map(function(tooltipTriggerEl) {
         return new bootstrap.Tooltip(tooltipTriggerEl);
     });
+}
+
+/**
+ * Initialize animated background with floating elements
+ */
+function initAnimatedBackground() {
+    const backgroundContainer = document.getElementById('animatedBackground');
+    if (!backgroundContainer) return;
+    
+    // Create floating elements
+    const numElements = 20; // Number of floating elements
+    const colors = ['#e6f2ff', '#cce6ff', '#b3d9ff', '#99ccff', '#80bfff'];
+    const sizes = [10, 15, 20, 25, 30, 40, 50];
+    
+    for (let i = 0; i < numElements; i++) {
+        const element = document.createElement('div');
+        element.classList.add('floating-element');
+        
+        // Random properties
+        const size = sizes[Math.floor(Math.random() * sizes.length)];
+        const top = Math.random() * 100; // %
+        const left = Math.random() * 100; // %
+        const opacity = 0.1 + Math.random() * 0.2;
+        const color = colors[Math.floor(Math.random() * colors.length)];
+        
+        // Apply styles
+        element.style.width = `${size}px`;
+        element.style.height = `${size}px`;
+        element.style.top = `${top}%`;
+        element.style.left = `${left}%`;
+        element.style.opacity = opacity;
+        element.style.backgroundColor = color;
+        
+        // Apply animations with random duration and delay
+        const animationDuration = 15 + Math.random() * 20; // 15-35s
+        const animationDelay = Math.random() * 10; // 0-10s
+        const animationType = Math.random() > 0.5 ? 'float' : 'float2';
+        
+        element.style.animation = `${animationType} ${animationDuration}s infinite ease-in-out ${animationDelay}s, 
+                                  pulse ${animationDuration/2}s infinite ease-in-out ${animationDelay}s`;
+        
+        // Append to container
+        backgroundContainer.appendChild(element);
+    }
 }
