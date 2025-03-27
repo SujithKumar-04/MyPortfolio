@@ -18,7 +18,7 @@
     <!-- Favicon -->
     <link rel="icon" href="{% static 'images/favicon.svg' %}" type="image/svg+xml">
 </head>
-<body>
+<body data-bs-theme="light">
     <!-- Animated Background -->
     <div class="animated-background" id="animatedBackground"></div>
     
@@ -52,6 +52,11 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link {% if active_page == 'contact' %}active{% endif %}" href="{% url 'portfolio:contact' %}">Contact</a>
+                        </li>
+                        <li class="nav-item ms-2 d-flex align-items-center">
+                            <button id="theme-toggle" class="btn btn-sm rounded-circle theme-toggle" aria-label="Toggle dark/light mode">
+                                <i class="fas fa-moon"></i>
+                            </button>
                         </li>
                     </ul>
                 </div>
