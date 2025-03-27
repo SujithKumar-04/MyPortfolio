@@ -89,9 +89,12 @@ function initAnimatedBackground() {
     if (!backgroundContainer) return;
     
     // Create floating elements
-    const numElements = 20; // Number of floating elements
-    const colors = ['#e6f2ff', '#cce6ff', '#b3d9ff', '#99ccff', '#80bfff'];
-    const sizes = [10, 15, 20, 25, 30, 40, 50];
+    const numElements = 25; // Number of floating elements
+    const shades = ['#000000', '#222222', '#444444', '#666666', '#888888', '#aaaaaa', '#cccccc', '#eeeeee', '#ffffff'];
+    const sizes = [10, 15, 20, 25, 30, 40, 50, 60];
+    
+    // Determine the theme
+    const isDarkTheme = document.body.classList.contains('dark-theme');
     
     for (let i = 0; i < numElements; i++) {
         const element = document.createElement('div');
@@ -101,12 +104,22 @@ function initAnimatedBackground() {
         const size = sizes[Math.floor(Math.random() * sizes.length)];
         const top = Math.random() * 100; // %
         const left = Math.random() * 100; // %
-        const opacity = 0.1 + Math.random() * 0.2;
-        const color = colors[Math.floor(Math.random() * colors.length)];
+        const opacity = 0.05 + Math.random() * 0.15; // More subtle opacity
+        
+        // Use black and white shades depending on theme
+        let color;
+        if (isDarkTheme) {
+            // For dark theme, use lighter shades
+            color = shades[Math.floor(Math.random() * 5) + 4]; // 4-8 (lighter shades)
+        } else {
+            // For light theme, use darker shades
+            color = shades[Math.floor(Math.random() * 5)]; // 0-4 (darker shades)
+        }
         
         // Apply styles
         element.style.width = `${size}px`;
         element.style.height = `${size}px`;
+        element.style.borderRadius = Math.random() > 0.5 ? '50%' : `${Math.floor(Math.random() * 5) + 5}px`;
         element.style.top = `${top}%`;
         element.style.left = `${left}%`;
         element.style.opacity = opacity;
