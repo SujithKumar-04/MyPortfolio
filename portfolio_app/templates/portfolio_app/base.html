@@ -19,18 +19,13 @@
     <!-- Favicon -->
     <link rel="icon" href="{% static 'images/favicon.svg' %}" type="image/svg+xml">
 </head>
-<body data-bs-theme="light" class="light-theme">
+<body>
     <!-- Animated Background -->
     <div class="animated-background" id="animatedBackground"></div>
     
     <!-- Header with Navigation -->
     <header class="sticky-top">
-        <div class="container position-relative">
-            <!-- Theme toggle button - positioned beside navbar -->
-            <button id="theme-toggle" class="btn rounded-circle theme-toggle position-absolute" style="right: 15px; top: 15px; z-index: 1100; width: 48px; height: 48px; font-size: 1.2rem; box-shadow: 0 3px 10px rgba(0,0,0,0.3);" aria-label="Toggle dark/light mode">
-                <i class="fas fa-moon"></i>
-            </button>
-            
+        <div class="container position-relative">            
             <nav class="navbar navbar-expand-lg navbar-light bg-white">
                 <div class="container">
                     <a class="navbar-brand" href="{% url 'portfolio:index' %}">
@@ -171,84 +166,6 @@
     <!-- Page-specific JavaScript -->
     {% block extra_js %}{% endblock %}
     
-    <!-- Debug output to check data-bs-theme attribute -->
-    <script>
-        console.log("Current theme:", document.body.getAttribute('data-bs-theme'));
-        
-        // Manually set up the theme toggle functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log("DOM content loaded");
-            const themeToggleBtn = document.getElementById('theme-toggle');
-            const bodyElement = document.body;
-            const icon = themeToggleBtn ? themeToggleBtn.querySelector('i') : null;
-            
-            console.log("Theme toggle button:", themeToggleBtn);
-            console.log("Icon:", icon);
-            
-            // Check if theme is saved in localStorage
-            const savedTheme = localStorage.getItem('theme');
-            console.log("Saved theme:", savedTheme);
-            
-            if (savedTheme) {
-                bodyElement.setAttribute('data-bs-theme', savedTheme);
-                
-                // Update body class
-                if (savedTheme === 'dark') {
-                    bodyElement.classList.remove('light-theme');
-                    bodyElement.classList.add('dark-theme');
-                } else {
-                    bodyElement.classList.remove('dark-theme');
-                    bodyElement.classList.add('light-theme');
-                }
-                
-                updateThemeIcon(savedTheme, icon);
-            }
-            
-            // Add click event to theme toggle button
-            if (themeToggleBtn) {
-                themeToggleBtn.addEventListener('click', function() {
-                    console.log("Theme toggle clicked");
-                    
-                    const currentTheme = bodyElement.getAttribute('data-bs-theme');
-                    console.log("Current theme:", currentTheme);
-                    
-                    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-                    console.log("New theme:", newTheme);
-                    
-                    // Update the theme attribute
-                    bodyElement.setAttribute('data-bs-theme', newTheme);
-                    
-                    // Update body class
-                    if (newTheme === 'dark') {
-                        bodyElement.classList.remove('light-theme');
-                        bodyElement.classList.add('dark-theme');
-                    } else {
-                        bodyElement.classList.remove('dark-theme');
-                        bodyElement.classList.add('light-theme');
-                    }
-                    
-                    // Update the icon
-                    updateThemeIcon(newTheme, icon);
-                    
-                    // Save theme preference to localStorage
-                    localStorage.setItem('theme', newTheme);
-                });
-            }
-        });
-        
-        function updateThemeIcon(theme, icon) {
-            if (!icon) return;
-            
-            console.log("Updating theme icon for:", theme);
-            
-            if (theme === 'dark') {
-                icon.classList.remove('fa-moon');
-                icon.classList.add('fa-sun');
-            } else {
-                icon.classList.remove('fa-sun');
-                icon.classList.add('fa-moon');
-            }
-        }
-    </script>
+    <!-- No theme initialization needed -->
 </body>
 </html>

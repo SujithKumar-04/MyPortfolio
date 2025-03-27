@@ -15,9 +15,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Initialize animated background
     initAnimatedBackground();
-    
-    // Initialize theme toggle functionality
-    initThemeToggle();
 });
 
 /**
@@ -89,12 +86,9 @@ function initAnimatedBackground() {
     if (!backgroundContainer) return;
     
     // Create floating elements
-    const numElements = 25; // Number of floating elements
+    const numElements = 30; // Number of floating elements
     const shades = ['#000000', '#222222', '#444444', '#666666', '#888888', '#aaaaaa', '#cccccc', '#eeeeee', '#ffffff'];
     const sizes = [10, 15, 20, 25, 30, 40, 50, 60];
-    
-    // Determine the theme
-    const isDarkTheme = document.body.classList.contains('dark-theme');
     
     for (let i = 0; i < numElements; i++) {
         const element = document.createElement('div');
@@ -106,27 +100,29 @@ function initAnimatedBackground() {
         const left = Math.random() * 100; // %
         const opacity = 0.05 + Math.random() * 0.15; // More subtle opacity
         
-        // Use black and white shades depending on theme
+        // Use mix of black and white shades for better contrast
+        // Use pure black or white for ~30% of elements
         let color;
-        if (isDarkTheme) {
-            // For dark theme, use lighter shades
-            color = shades[Math.floor(Math.random() * 5) + 4]; // 4-8 (lighter shades)
+        if (Math.random() < 0.15) {
+            color = '#000000'; // Pure black
+        } else if (Math.random() < 0.3) {
+            color = '#ffffff'; // Pure white
         } else {
-            // For light theme, use darker shades
-            color = shades[Math.floor(Math.random() * 5)]; // 0-4 (darker shades)
+            // Use a range of shades
+            color = shades[Math.floor(Math.random() * shades.length)];
         }
         
         // Apply styles
         element.style.width = `${size}px`;
         element.style.height = `${size}px`;
-        element.style.borderRadius = Math.random() > 0.5 ? '50%' : `${Math.floor(Math.random() * 5) + 5}px`;
+        element.style.borderRadius = Math.random() > 0.7 ? '50%' : `${Math.floor(Math.random() * 5) + 5}px`;
         element.style.top = `${top}%`;
         element.style.left = `${left}%`;
         element.style.opacity = opacity;
         element.style.backgroundColor = color;
         
         // Apply animations with random duration and delay
-        const animationDuration = 15 + Math.random() * 20; // 15-35s
+        const animationDuration = 15 + Math.random() * 25; // 15-40s
         const animationDelay = Math.random() * 10; // 0-10s
         const animationType = Math.random() > 0.5 ? 'float' : 'float2';
         
@@ -138,53 +134,4 @@ function initAnimatedBackground() {
     }
 }
 
-/**
- * Initialize theme toggle functionality
- * Toggles between light and dark mode
- */
-function initThemeToggle() {
-    const themeToggleBtn = document.getElementById('theme-toggle');
-    const bodyElement = document.body;
-    const icon = themeToggleBtn ? themeToggleBtn.querySelector('i') : null;
-    
-    // Check if theme is saved in localStorage
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-        bodyElement.setAttribute('data-bs-theme', savedTheme);
-        updateThemeIcon(savedTheme, icon);
-    }
-    
-    // Add click event to theme toggle button
-    if (themeToggleBtn) {
-        themeToggleBtn.addEventListener('click', function() {
-            const currentTheme = bodyElement.getAttribute('data-bs-theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            
-            // Update the theme attribute
-            bodyElement.setAttribute('data-bs-theme', newTheme);
-            
-            // Update the icon
-            updateThemeIcon(newTheme, icon);
-            
-            // Save theme preference to localStorage
-            localStorage.setItem('theme', newTheme);
-        });
-    }
-}
-
-/**
- * Updates the theme toggle icon based on the current theme
- * @param {string} theme - The current theme ('light' or 'dark')
- * @param {Element} icon - The icon element to update
- */
-function updateThemeIcon(theme, icon) {
-    if (!icon) return;
-    
-    if (theme === 'dark') {
-        icon.classList.remove('fa-moon');
-        icon.classList.add('fa-sun');
-    } else {
-        icon.classList.remove('fa-sun');
-        icon.classList.add('fa-moon');
-    }
-}
+// Theme toggle functionality removed as requested
