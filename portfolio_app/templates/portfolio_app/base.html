@@ -14,11 +14,12 @@
     <!-- Custom CSS -->
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/dark-mode.css' %}">
     
     <!-- Favicon -->
     <link rel="icon" href="{% static 'images/favicon.svg' %}" type="image/svg+xml">
 </head>
-<body data-bs-theme="light">
+<body data-bs-theme="light" class="light-theme">
     <!-- Animated Background -->
     <div class="animated-background" id="animatedBackground"></div>
     
@@ -167,5 +168,85 @@
     
     <!-- Page-specific JavaScript -->
     {% block extra_js %}{% endblock %}
+    
+    <!-- Debug output to check data-bs-theme attribute -->
+    <script>
+        console.log("Current theme:", document.body.getAttribute('data-bs-theme'));
+        
+        // Manually set up the theme toggle functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log("DOM content loaded");
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            const bodyElement = document.body;
+            const icon = themeToggleBtn ? themeToggleBtn.querySelector('i') : null;
+            
+            console.log("Theme toggle button:", themeToggleBtn);
+            console.log("Icon:", icon);
+            
+            // Check if theme is saved in localStorage
+            const savedTheme = localStorage.getItem('theme');
+            console.log("Saved theme:", savedTheme);
+            
+            if (savedTheme) {
+                bodyElement.setAttribute('data-bs-theme', savedTheme);
+                
+                // Update body class
+                if (savedTheme === 'dark') {
+                    bodyElement.classList.remove('light-theme');
+                    bodyElement.classList.add('dark-theme');
+                } else {
+                    bodyElement.classList.remove('dark-theme');
+                    bodyElement.classList.add('light-theme');
+                }
+                
+                updateThemeIcon(savedTheme, icon);
+            }
+            
+            // Add click event to theme toggle button
+            if (themeToggleBtn) {
+                themeToggleBtn.addEventListener('click', function() {
+                    console.log("Theme toggle clicked");
+                    
+                    const currentTheme = bodyElement.getAttribute('data-bs-theme');
+                    console.log("Current theme:", currentTheme);
+                    
+                    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                    console.log("New theme:", newTheme);
+                    
+                    // Update the theme attribute
+                    bodyElement.setAttribute('data-bs-theme', newTheme);
+                    
+                    // Update body class
+                    if (newTheme === 'dark') {
+                        bodyElement.classList.remove('light-theme');
+                        bodyElement.classList.add('dark-theme');
+                    } else {
+                        bodyElement.classList.remove('dark-theme');
+                        bodyElement.classList.add('light-theme');
+                    }
+                    
+                    // Update the icon
+                    updateThemeIcon(newTheme, icon);
+                    
+                    // Save theme preference to localStorage
+                    localStorage.setItem('theme', newTheme);
+                });
+            }
+        });
+        
+        function updateThemeIcon(theme, icon) {
+            if (!icon) return;
+            
+            console.log("Updating theme icon for:", theme);
+            
+            if (theme === 'dark') {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            }
+        }
+    </script>
 </body>
 </html>

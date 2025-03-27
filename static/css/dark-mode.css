@@ -1,0 +1,166 @@
+/* Dark mode styles */
+body.dark-theme {
+    background-color: var(--dark-bg-color) !important;
+    color: var(--dark-text-color) !important;
+}
+
+body.dark-theme .bg-white {
+    background-color: var(--dark-surface-color) !important;
+}
+
+body.dark-theme .bg-light {
+    background-color: var(--dark-surface-color) !important;
+}
+
+body.dark-theme .card {
+    background-color: var(--dark-card-bg) !important;
+    border-color: var(--dark-border-color) !important;
+}
+
+body.dark-theme .text-muted {
+    color: #adb5bd !important;
+}
+
+body.dark-theme .logo-text {
+    color: var(--dark-text-color) !important;
+}
+
+body.dark-theme .navbar-light .navbar-nav .nav-link {
+    color: var(--dark-text-color) !important;
+}
+
+body.dark-theme .navbar-light .navbar-brand {
+    color: var(--dark-text-color) !important;
+}
+
+body.dark-theme .navbar-toggler {
+    border-color: var(--dark-border-color) !important;
+}
+
+body.dark-theme .navbar-light .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+}
+
+body.dark-theme footer {
+    background-color: var(--dark-surface-color) !important;
+    border-top: 1px solid var(--dark-border-color) !important;
+}
+
+body.dark-theme hr {
+    border-color: var(--dark-border-color) !important;
+}
+
+body.dark-theme .section-description {
+    color: #adb5bd !important;
+}
+
+body.dark-theme .floating-element {
+    opacity: 0.3 !important; /* Make floating elements more visible in dark mode */
+}
+
+body.dark-theme a {
+    color: #5e9eff !important;
+}
+
+body.dark-theme a:hover {
+    color: #8eb8ff !important;
+}
+
+body.dark-theme .btn-outline-primary {
+    color: #5e9eff !important;
+    border-color: #5e9eff !important;
+}
+
+body.dark-theme .btn-outline-primary:hover {
+    background-color: #5e9eff !important;
+    color: var(--dark-bg-color) !important;
+}
+
+body.dark-theme .theme-toggle {
+    color: #ffc107 !important;
+}
+
+body.dark-theme::before {
+    background-color: var(--dark-bg-color) !important;
+    background-image: 
+        radial-gradient(circle at 25% 25%, rgba(94, 158, 255, 0.05) 1%, transparent 3%),
+        radial-gradient(circle at 75% 75%, rgba(94, 158, 255, 0.05) 1%, transparent 3%),
+        radial-gradient(circle at 50% 50%, rgba(94, 158, 255, 0.05) 1%, transparent 3%) !important;
+}
+
+/* Timeline styles for dark mode */
+body.dark-theme .timeline-marker {
+    border-color: var(--dark-bg-color) !important;
+    box-shadow: 0 0 0 3px rgba(94, 158, 255, 0.2) !important;
+}
+
+body.dark-theme .timeline::before {
+    background-color: rgba(94, 158, 255, 0.2) !important;
+}
+
+/* Progress bars in dark mode */
+body.dark-theme .progress {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Service cards in dark mode */
+body.dark-theme .service-card {
+    background-color: var(--dark-card-bg) !important;
+}
+
+/* Input fields in dark mode */
+body.dark-theme .form-control {
+    background-color: var(--dark-bg-color) !important;
+    border-color: var(--dark-border-color) !important;
+    color: var(--dark-text-color) !important;
+}
+
+body.dark-theme .form-control:focus {
+    box-shadow: 0 0 0 0.25rem rgba(94, 158, 255, 0.25) !important;
+}
+
+body.dark-theme .form-control::placeholder {
+    color: #6c757d !important;
+}
+
+/* Additional styles for project cards in dark mode */
+body.dark-theme .project-category-badge {
+    background-color: rgba(94, 158, 255, 0.9) !important;
+}
+
+body.dark-theme .card-divider {
+    background-color: #5e9eff !important;
+}
+
+body.dark-theme .project-expand a {
+    background-color: rgba(94, 158, 255, 0.1) !important;
+}
+
+body.dark-theme .project-expand a:hover {
+    background-color: #5e9eff !important;
+}
+
+/* Tool cards in dark mode */
+body.dark-theme .tool-card, 
+body.dark-theme .additional-skills-card {
+    background-color: var(--dark-card-bg) !important;
+}
+
+body.dark-theme .tool-icon {
+    color: #5e9eff !important;
+}
+
+body.dark-theme .skill-list li::before {
+    color: #5e9eff !important;
+}
+
+/* Social links in dark mode */
+body.dark-theme .social-link {
+    background-color: rgba(94, 158, 255, 0.1) !important;
+    color: #5e9eff !important;
+}
+
+body.dark-theme .social-link:hover {
+    background-color: #5e9eff !important;
+    color: var(--dark-bg-color) !important;
+}
