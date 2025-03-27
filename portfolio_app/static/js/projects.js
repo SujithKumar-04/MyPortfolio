@@ -1,11 +1,14 @@
 /**
  * JavaScript for the projects page
- * Handles filtering of projects
+ * Handles filtering of projects and card interactions
  */
 
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize project filtering
     initProjectFilter();
+    
+    // Initialize tooltips for project cards
+    initProjectCardFeatures();
 });
 
 /**
@@ -58,4 +61,33 @@ function initProjectFilter() {
             item.style.transform = 'scale(1)';
         });
     }
+}
+
+/**
+ * Initialize features for project cards
+ * - Tooltips for Read More buttons
+ * - Read More functionality
+ */
+function initProjectCardFeatures() {
+    // Initialize tooltips for all elements with data-bs-toggle="tooltip"
+    const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl);
+    });
+    
+    // Add click event for Read More buttons
+    const readMoreButtons = document.querySelectorAll('.project-expand a');
+    readMoreButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Get the project card
+            const projectCard = this.closest('.project-card');
+            const projectTitle = projectCard.querySelector('.card-title').textContent;
+            
+            // In a real implementation, this would show a modal with full project details
+            // For now, just show an alert
+            alert(`Full details for "${projectTitle}" would be shown in a modal.`);
+        });
+    });
 }

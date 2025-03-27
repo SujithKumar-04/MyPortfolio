@@ -30,22 +30,33 @@
                 {% for project in projects %}
                 <div class="col-md-6 col-lg-4 project-item" data-category="{{ project.category }}">
                     <div class="card project-card h-100">
-                        <img src="{{ project.image_url|default:'https://via.placeholder.com/600x400.svg?text=Project+Image' }}" class="card-img-top" alt="{{ project.title }}">
+                        <div class="project-image-container">
+                            <img src="{{ project.image_url|default:'https://via.placeholder.com/600x400.svg?text=Project+Image' }}" class="card-img-top" alt="{{ project.title }}">
+                            <div class="project-category-badge">{{ project.get_category_display }}</div>
+                        </div>
                         <div class="card-body">
-                            <h5 class="card-title">{{ project.title }}</h5>
+                            <h5 class="card-title fw-bold">{{ project.title }}</h5>
+                            <div class="card-divider"></div>
                             <p class="card-text">{{ project.description|truncatechars:150 }}</p>
                         </div>
-                        <div class="card-footer bg-white border-0">
-                            {% if project.github_url %}
-                                <a href="{{ project.github_url }}" target="_blank" class="btn btn-sm btn-outline-dark me-2">
-                                    <i class="fab fa-github"></i> Code
+                        <div class="card-footer bg-white border-0 d-flex justify-content-between align-items-center">
+                            <div class="project-links">
+                                {% if project.github_url %}
+                                    <a href="{{ project.github_url }}" target="_blank" class="btn btn-sm btn-primary me-2">
+                                        <i class="fab fa-github me-1"></i> View Code
+                                    </a>
+                                {% endif %}
+                                {% if project.project_url %}
+                                    <a href="{{ project.project_url }}" target="_blank" class="btn btn-sm btn-outline-primary">
+                                        <i class="fas fa-external-link-alt me-1"></i> Live Demo
+                                    </a>
+                                {% endif %}
+                            </div>
+                            <div class="project-expand">
+                                <a href="#" class="text-primary" data-bs-toggle="tooltip" title="Read More">
+                                    <i class="fas fa-chevron-right"></i>
                                 </a>
-                            {% endif %}
-                            {% if project.project_url %}
-                                <a href="{{ project.project_url }}" target="_blank" class="btn btn-sm btn-outline-primary">
-                                    <i class="fas fa-external-link-alt"></i> Live
-                                </a>
-                            {% endif %}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -54,103 +65,169 @@
                 <!-- Default projects if none are in database -->
                 <div class="col-md-6 col-lg-4 project-item" data-category="web">
                     <div class="card project-card h-100">
-                        <img src="https://via.placeholder.com/600x400.svg?text=Finance+Dashboard" class="card-img-top" alt="Personal Finance Dashboard">
+                        <div class="project-image-container">
+                            <img src="https://via.placeholder.com/600x400.svg?text=Finance+Dashboard" class="card-img-top" alt="Personal Finance Dashboard">
+                            <div class="project-category-badge">Web App</div>
+                        </div>
                         <div class="card-body">
-                            <h5 class="card-title">Personal Finance Dashboard</h5>
+                            <h5 class="card-title fw-bold">Personal Finance Dashboard</h5>
+                            <div class="card-divider"></div>
                             <p class="card-text">A comprehensive financial management tool with budgeting, expense tracking, and data visualization. Built with React, Node.js, and MongoDB.</p>
                         </div>
-                        <div class="card-footer bg-white border-0">
-                            <a href="#" class="btn btn-sm btn-outline-dark me-2">
-                                <i class="fab fa-github"></i> Code
-                            </a>
-                            <a href="#" class="btn btn-sm btn-outline-primary">
-                                <i class="fas fa-external-link-alt"></i> Live
-                            </a>
+                        <div class="card-footer bg-white border-0 d-flex justify-content-between align-items-center">
+                            <div class="project-links">
+                                <a href="#" class="btn btn-sm btn-primary me-2">
+                                    <i class="fab fa-github me-1"></i> View Code
+                                </a>
+                                <a href="#" class="btn btn-sm btn-outline-primary">
+                                    <i class="fas fa-external-link-alt me-1"></i> Live Demo
+                                </a>
+                            </div>
+                            <div class="project-expand">
+                                <a href="#" class="text-primary" data-bs-toggle="tooltip" title="Read More">
+                                    <i class="fas fa-chevron-right"></i>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-4 project-item" data-category="ui">
                     <div class="card project-card h-100">
-                        <img src="https://via.placeholder.com/600x400.svg?text=UI+Design" class="card-img-top" alt="UI/UX Design Project">
+                        <div class="project-image-container">
+                            <img src="https://via.placeholder.com/600x400.svg?text=UI+Design" class="card-img-top" alt="UI/UX Design Project">
+                            <div class="project-category-badge">UI/UX</div>
+                        </div>
                         <div class="card-body">
-                            <h5 class="card-title">Mobile App UI Design</h5>
+                            <h5 class="card-title fw-bold">Mobile App UI Design</h5>
+                            <div class="card-divider"></div>
                             <p class="card-text">A complete UI/UX design for a fitness tracking mobile application. Includes user flows, wireframes, and high-fidelity mockups created in Figma.</p>
                         </div>
-                        <div class="card-footer bg-white border-0">
-                            <a href="#" class="btn btn-sm btn-outline-dark me-2">
-                                <i class="fab fa-github"></i> Code
-                            </a>
-                            <a href="#" class="btn btn-sm btn-outline-primary">
-                                <i class="fas fa-external-link-alt"></i> Live
-                            </a>
+                        <div class="card-footer bg-white border-0 d-flex justify-content-between align-items-center">
+                            <div class="project-links">
+                                <a href="#" class="btn btn-sm btn-primary me-2">
+                                    <i class="fab fa-github me-1"></i> View Code
+                                </a>
+                                <a href="#" class="btn btn-sm btn-outline-primary">
+                                    <i class="fas fa-external-link-alt me-1"></i> Live Demo
+                                </a>
+                            </div>
+                            <div class="project-expand">
+                                <a href="#" class="text-primary" data-bs-toggle="tooltip" title="Read More">
+                                    <i class="fas fa-chevron-right"></i>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-4 project-item" data-category="ecommerce">
                     <div class="card project-card h-100">
-                        <img src="https://via.placeholder.com/600x400.svg?text=Food+Delivery" class="card-img-top" alt="Food Delivery Platform">
+                        <div class="project-image-container">
+                            <img src="https://via.placeholder.com/600x400.svg?text=Food+Delivery" class="card-img-top" alt="Food Delivery Platform">
+                            <div class="project-category-badge">E-commerce</div>
+                        </div>
                         <div class="card-body">
-                            <h5 class="card-title">Food Delivery Platform</h5>
+                            <h5 class="card-title fw-bold">Food Delivery Platform</h5>
+                            <div class="card-divider"></div>
                             <p class="card-text">A complete food ordering and delivery system with real-time tracking and payment integration using React, Node.js, and MongoDB.</p>
                         </div>
-                        <div class="card-footer bg-white border-0">
-                            <a href="#" class="btn btn-sm btn-outline-dark me-2">
-                                <i class="fab fa-github"></i> Code
-                            </a>
-                            <a href="#" class="btn btn-sm btn-outline-primary">
-                                <i class="fas fa-external-link-alt"></i> Live
-                            </a>
+                        <div class="card-footer bg-white border-0 d-flex justify-content-between align-items-center">
+                            <div class="project-links">
+                                <a href="#" class="btn btn-sm btn-primary me-2">
+                                    <i class="fab fa-github me-1"></i> View Code
+                                </a>
+                                <a href="#" class="btn btn-sm btn-outline-primary">
+                                    <i class="fas fa-external-link-alt me-1"></i> Live Demo
+                                </a>
+                            </div>
+                            <div class="project-expand">
+                                <a href="#" class="text-primary" data-bs-toggle="tooltip" title="Read More">
+                                    <i class="fas fa-chevron-right"></i>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-4 project-item" data-category="web">
                     <div class="card project-card h-100">
-                        <img src="https://via.placeholder.com/600x400.svg?text=Data+Dashboard" class="card-img-top" alt="Data Visualization Dashboard">
+                        <div class="project-image-container">
+                            <img src="https://via.placeholder.com/600x400.svg?text=Data+Dashboard" class="card-img-top" alt="Data Visualization Dashboard">
+                            <div class="project-category-badge">Web App</div>
+                        </div>
                         <div class="card-body">
-                            <h5 class="card-title">Data Visualization Dashboard</h5>
+                            <h5 class="card-title fw-bold">Data Visualization Dashboard</h5>
+                            <div class="card-divider"></div>
                             <p class="card-text">Interactive dashboard for visualizing complex datasets with customizable charts and filters using D3.js and React.</p>
                         </div>
-                        <div class="card-footer bg-white border-0">
-                            <a href="#" class="btn btn-sm btn-outline-dark me-2">
-                                <i class="fab fa-github"></i> Code
-                            </a>
-                            <a href="#" class="btn btn-sm btn-outline-primary">
-                                <i class="fas fa-external-link-alt"></i> Live
-                            </a>
+                        <div class="card-footer bg-white border-0 d-flex justify-content-between align-items-center">
+                            <div class="project-links">
+                                <a href="#" class="btn btn-sm btn-primary me-2">
+                                    <i class="fab fa-github me-1"></i> View Code
+                                </a>
+                                <a href="#" class="btn btn-sm btn-outline-primary">
+                                    <i class="fas fa-external-link-alt me-1"></i> Live Demo
+                                </a>
+                            </div>
+                            <div class="project-expand">
+                                <a href="#" class="text-primary" data-bs-toggle="tooltip" title="Read More">
+                                    <i class="fas fa-chevron-right"></i>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-4 project-item" data-category="ui">
                     <div class="card project-card h-100">
-                        <img src="https://via.placeholder.com/600x400.svg?text=Website+Redesign" class="card-img-top" alt="Website Redesign">
+                        <div class="project-image-container">
+                            <img src="https://via.placeholder.com/600x400.svg?text=Website+Redesign" class="card-img-top" alt="Website Redesign">
+                            <div class="project-category-badge">UI/UX</div>
+                        </div>
                         <div class="card-body">
-                            <h5 class="card-title">E-commerce Website Redesign</h5>
+                            <h5 class="card-title fw-bold">E-commerce Website Redesign</h5>
+                            <div class="card-divider"></div>
                             <p class="card-text">Complete redesign of an e-commerce website to improve user experience, navigation, and conversion rates.</p>
                         </div>
-                        <div class="card-footer bg-white border-0">
-                            <a href="#" class="btn btn-sm btn-outline-dark me-2">
-                                <i class="fab fa-github"></i> Code
-                            </a>
-                            <a href="#" class="btn btn-sm btn-outline-primary">
-                                <i class="fas fa-external-link-alt"></i> Live
-                            </a>
+                        <div class="card-footer bg-white border-0 d-flex justify-content-between align-items-center">
+                            <div class="project-links">
+                                <a href="#" class="btn btn-sm btn-primary me-2">
+                                    <i class="fab fa-github me-1"></i> View Code
+                                </a>
+                                <a href="#" class="btn btn-sm btn-outline-primary">
+                                    <i class="fas fa-external-link-alt me-1"></i> Live Demo
+                                </a>
+                            </div>
+                            <div class="project-expand">
+                                <a href="#" class="text-primary" data-bs-toggle="tooltip" title="Read More">
+                                    <i class="fas fa-chevron-right"></i>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-4 project-item" data-category="ecommerce">
                     <div class="card project-card h-100">
-                        <img src="https://via.placeholder.com/600x400.svg?text=Shopping+Cart" class="card-img-top" alt="Shopping Cart System">
+                        <div class="project-image-container">
+                            <img src="https://via.placeholder.com/600x400.svg?text=Shopping+Cart" class="card-img-top" alt="Shopping Cart System">
+                            <div class="project-category-badge">E-commerce</div>
+                        </div>
                         <div class="card-body">
-                            <h5 class="card-title">Shopping Cart System</h5>
+                            <h5 class="card-title fw-bold">Shopping Cart System</h5>
+                            <div class="card-divider"></div>
                             <p class="card-text">A complete e-commerce shopping cart system with product catalog, user authentication, and payment processing.</p>
                         </div>
-                        <div class="card-footer bg-white border-0">
-                            <a href="#" class="btn btn-sm btn-outline-dark me-2">
-                                <i class="fab fa-github"></i> Code
-                            </a>
-                            <a href="#" class="btn btn-sm btn-outline-primary">
-                                <i class="fas fa-external-link-alt"></i> Live
-                            </a>
+                        <div class="card-footer bg-white border-0 d-flex justify-content-between align-items-center">
+                            <div class="project-links">
+                                <a href="#" class="btn btn-sm btn-primary me-2">
+                                    <i class="fab fa-github me-1"></i> View Code
+                                </a>
+                                <a href="#" class="btn btn-sm btn-outline-primary">
+                                    <i class="fas fa-external-link-alt me-1"></i> Live Demo
+                                </a>
+                            </div>
+                            <div class="project-expand">
+                                <a href="#" class="text-primary" data-bs-toggle="tooltip" title="Read More">
+                                    <i class="fas fa-chevron-right"></i>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
