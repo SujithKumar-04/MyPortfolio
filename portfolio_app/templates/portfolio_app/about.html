@@ -1,0 +1,242 @@
+{% extends 'portfolio_app/base.html' %}
+
+{% block content %}
+<!-- About Hero Section -->
+<section class="about-hero py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h1 class="section-heading display-4">About Me</h1>
+            <div class="section-heading-line mx-auto"></div>
+        </div>
+        
+        <div class="row align-items-center">
+            <div class="col-lg-5 mb-4 mb-lg-0">
+                <img src="https://via.placeholder.com/600x600.svg?text=Profile+Image" alt="Profile Image" class="img-fluid rounded shadow-lg">
+                <div class="my-3 text-center">
+                    <span class="badge bg-dark p-2">MERN Stack Developer</span>
+                </div>
+                <div class="text-center">
+                    <a href="{% url 'portfolio:download_resume' %}" class="btn btn-primary btn-lg">
+                        <i class="fas fa-download me-2"></i> Download Resume
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-7">
+                <h2>Web Developer & Data Science Enthusiast</h2>
+                <p class="lead">
+                    {% if profile and profile.bio %}
+                        {{ profile.bio }}
+                    {% else %}
+                        I'm a passionate web developer based in Hyderabad with a strong focus on creating intuitive and engaging user experiences. With a B.Tech degree and specialization in Data Science from Malla Reddy University, I combine technical skills with creative problem-solving.
+                    {% endif %}
+                </p>
+                <p>
+                    My journey in web development began during college when I built my first projects like a Speed Typing Test application. I've earned certifications in static and responsive web design, and continue to expand my skills in HTML, CSS, JavaScript, Python, and database management.
+                </p>
+                
+                <div class="row mt-4">
+                    <div class="col-md-6">
+                        <div class="d-flex mb-3">
+                            <div class="icon-box me-3">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div>
+                                <h6 class="mb-0">Name:</h6>
+                                <p>{% if profile %}{{ profile.name }}{% else %}Sujith Kumar Chepuri{% endif %}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="d-flex mb-3">
+                            <div class="icon-box me-3">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h6 class="mb-0">Email:</h6>
+                                <p>{% if profile %}{{ profile.email }}{% else %}sujith@example.com{% endif %}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="d-flex mb-3">
+                            <div class="icon-box me-3">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h6 class="mb-0">Location:</h6>
+                                <p>{% if profile %}{{ profile.location }}{% else %}Hyderabad, India{% endif %}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="d-flex mb-3">
+                            <div class="icon-box me-3">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <div>
+                                <h6 class="mb-0">Degree:</h6>
+                                <p>B.Tech, Data Science</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Education & Experience Section -->
+<section class="education-experience py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="section-heading">Education & Experience</h2>
+            <div class="section-heading-line mx-auto"></div>
+        </div>
+        
+        <div class="row">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <h3 class="mb-4">Education</h3>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h4>B.Tech in Data Science</h4>
+                            <p class="text-muted">Malla Reddy University | 2019 - 2023</p>
+                            <p>Completed bachelor's degree with a focus on data structures, algorithms, and data analysis techniques.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h4>Web Development Bootcamp</h4>
+                            <p class="text-muted">Udemy | 2022</p>
+                            <p>Intensive course covering HTML, CSS, JavaScript, React, Node.js, and database integration.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h4>Data Science Certification</h4>
+                            <p class="text-muted">Coursera | 2021</p>
+                            <p>Learned statistical methods, data visualization, machine learning algorithms, and data processing.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-6">
+                <h3 class="mb-4">Experience</h3>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h4>Frontend Developer</h4>
+                            <p class="text-muted">Tech Solutions Inc. | 2023 - Present</p>
+                            <p>Developed responsive web applications using React, implemented UI/UX designs, and collaborated with cross-functional teams.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h4>Web Development Intern</h4>
+                            <p class="text-muted">Digital Creations | 2022 - 2023</p>
+                            <p>Created and maintained client websites, implemented responsive designs, and assisted with UX improvements.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h4>Freelance Developer</h4>
+                            <p class="text-muted">Self-employed | 2021 - 2022</p>
+                            <p>Built custom websites for small businesses, implemented e-commerce solutions, and provided technical support.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Services Section -->
+<section class="services py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="section-heading">Services I Offer</h2>
+            <div class="section-heading-line mx-auto"></div>
+            <p class="section-description">Here are the services I provide with dedication and expertise</p>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-4">
+                <div class="service-card text-center p-4 h-100">
+                    <div class="service-icon mb-3">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h4>Web Development</h4>
+                    <p>Creating responsive and dynamic websites using modern technologies and frameworks.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="service-card text-center p-4 h-100">
+                    <div class="service-icon mb-3">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h4>Responsive Design</h4>
+                    <p>Building layouts that adapt to any device size for optimal user experience.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="service-card text-center p-4 h-100">
+                    <div class="service-icon mb-3">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <h4>UI/UX Design</h4>
+                    <p>Crafting intuitive interfaces and user-friendly experiences for web applications.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="service-card text-center p-4 h-100">
+                    <div class="service-icon mb-3">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <h4>E-commerce Solutions</h4>
+                    <p>Implementing online stores with secure payment gateways and inventory management.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="service-card text-center p-4 h-100">
+                    <div class="service-icon mb-3">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <h4>Backend Development</h4>
+                    <p>Building robust server-side applications and RESTful APIs for web services.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="service-card text-center p-4 h-100">
+                    <div class="service-icon mb-3">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <h4>Data Visualization</h4>
+                    <p>Creating interactive charts and graphs to present complex data in a meaningful way.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action Section -->
+<section class="cta py-5 bg-primary text-white">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-9 mb-4 mb-lg-0">
+                <h2 class="mb-2">Interested in working together?</h2>
+                <p class="lead mb-0">Let's discuss how I can contribute to your project or team.</p>
+            </div>
+            <div class="col-lg-3 text-lg-end">
+                <a href="{% url 'portfolio:contact' %}" class="btn btn-light btn-lg">Get In Touch</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,153 @@
+{% extends 'portfolio_app/base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- Contact Hero Section -->
+<section class="contact-hero py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h1 class="section-heading display-4">Get In Touch</h1>
+            <div class="section-heading-line mx-auto"></div>
+            <p class="section-description">
+                Have a project in mind or want to collaborate? Feel free to contact me through the form below
+                or via my social media profiles.
+            </p>
+        </div>
+        
+        <div class="row">
+            <!-- Contact Information -->
+            <div class="col-lg-4 mb-4 mb-lg-0">
+                <div class="contact-info-card p-4 h-100">
+                    <h3 class="mb-4">Contact Information</h3>
+                    <p class="mb-4">I'm currently available for freelance work and full-time positions. Let's discuss how I can contribute to your project or team.</p>
+                    
+                    <div class="contact-item d-flex mb-3">
+                        <div class="icon-box me-3">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <h6 class="mb-0">Location:</h6>
+                            <p>{% if profile %}{{ profile.location }}{% else %}New York, NY, United States{% endif %}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item d-flex mb-3">
+                        <div class="icon-box me-3">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h6 class="mb-0">Email:</h6>
+                            <p>{% if profile %}{{ profile.email }}{% else %}jane@example.com{% endif %}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item d-flex mb-3">
+                        <div class="icon-box me-3">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div>
+                            <h6 class="mb-0">Phone:</h6>
+                            <p>{% if profile %}{{ profile.phone }}{% else %}+1 (555) 123-4567{% endif %}</p>
+                        </div>
+                    </div>
+                    
+                    <h4 class="mt-4 mb-3">Follow Me</h4>
+                    <div class="social-links">
+                        {% if profile and profile.github %}
+                            <a href="{{ profile.github }}" target="_blank" class="social-link me-2"><i class="fab fa-github"></i></a>
+                        {% else %}
+                            <a href="#" class="social-link me-2"><i class="fab fa-github"></i></a>
+                        {% endif %}
+                        
+                        {% if profile and profile.linkedin %}
+                            <a href="{{ profile.linkedin }}" target="_blank" class="social-link me-2"><i class="fab fa-linkedin"></i></a>
+                        {% else %}
+                            <a href="#" class="social-link me-2"><i class="fab fa-linkedin"></i></a>
+                        {% endif %}
+                        
+                        {% if profile and profile.twitter %}
+                            <a href="{{ profile.twitter }}" target="_blank" class="social-link me-2"><i class="fab fa-twitter"></i></a>
+                        {% else %}
+                            <a href="#" class="social-link me-2"><i class="fab fa-twitter"></i></a>
+                        {% endif %}
+                        
+                        {% if profile and profile.other_social %}
+                            <a href="{{ profile.other_social }}" target="_blank" class="social-link"><i class="fab fa-dribbble"></i></a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Contact Form -->
+            <div class="col-lg-8">
+                <div class="contact-form-card p-4">
+                    <h3 class="mb-4">Send Me a Message</h3>
+                    <form id="contactForm">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="id_name" class="form-label">Name</label>
+                                {{ form.name }}
+                                <div class="invalid-feedback" id="name-error"></div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="id_email" class="form-label">Email</label>
+                                {{ form.email }}
+                                <div class="invalid-feedback" id="email-error"></div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_subject" class="form-label">Subject</label>
+                            {{ form.subject }}
+                            <div class="invalid-feedback" id="subject-error"></div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_message" class="form-label">Message</label>
+                            {{ form.message }}
+                            <div class="invalid-feedback" id="message-error"></div>
+                        </div>
+                        <button type="submit" class="btn btn-primary" id="submitBtn">
+                            <span id="submitBtnText">Send Message</span>
+                            <i class="fas fa-paper-plane ms-2"></i>
+                            <div class="spinner-border spinner-border-sm text-light d-none" id="submitSpinner" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </button>
+                    </form>
+                    
+                    <!-- Form submitted message -->
+                    <div class="alert alert-success mt-4 d-none" id="formSuccess">
+                        <i class="fas fa-check-circle me-2"></i> Your message has been sent successfully! I'll get back to you soon.
+                    </div>
+                    
+                    <!-- Form error message -->
+                    <div class="alert alert-danger mt-4 d-none" id="formError">
+                        <i class="fas fa-exclamation-circle me-2"></i> <span id="errorText">There was an error sending your message. Please try again.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Map Section (optional) -->
+<section class="map-section py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-body p-0">
+                        <div class="ratio ratio-21x9">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d387190.27991456135!2d-74.25987368715496!3d40.697670064588735!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2sin!4v1634120087111!5m2!1sen!2sin" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/contact.js' %}"></script>
+{% endblock %}

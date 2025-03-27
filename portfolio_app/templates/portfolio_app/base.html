@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if site_profile %}{{ site_profile.name }} - Portfolio{% else %}Developer Portfolio{% endif %}</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="{% static 'images/favicon.svg' %}" type="image/svg+xml">
+</head>
+<body>
+    <!-- Header with Navigation -->
+    <header class="sticky-top">
+        <nav class="navbar navbar-expand-lg navbar-light bg-white">
+            <div class="container">
+                <a class="navbar-brand" href="{% url 'portfolio:index' %}">
+                    {% if site_profile %}
+                    <span class="logo-text">&lt; {{ site_profile.name }} /&gt;</span>
+                    {% else %}
+                    <span class="logo-text">&lt; Jane Doe /&gt;</span>
+                    {% endif %}
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link {% if active_page == 'home' %}active{% endif %}" href="{% url 'portfolio:index' %}">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if active_page == 'about' %}active{% endif %}" href="{% url 'portfolio:about' %}">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if active_page == 'projects' %}active{% endif %}" href="{% url 'portfolio:projects' %}">Projects</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if active_page == 'skills' %}active{% endif %}" href="{% url 'portfolio:skills' %}">Skills</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if active_page == 'contact' %}active{% endif %}" href="{% url 'portfolio:contact' %}">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-4 mt-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="footer-brand">
+                        <span class="logo-text">&lt; {% if site_profile %}{{ site_profile.name }}{% else %}Jane Doe{% endif %} /&gt;</span>
+                        <p class="mt-2 text-muted">A passionate frontend developer crafting beautiful user interfaces and experiences for the web.</p>
+                    </div>
+                    <div class="social-links mt-3">
+                        {% if site_profile and site_profile.github %}
+                            <a href="{{ site_profile.github }}" target="_blank"><i class="fab fa-github"></i></a>
+                        {% else %}
+                            <a href="#"><i class="fab fa-github"></i></a>
+                        {% endif %}
+                        
+                        {% if site_profile and site_profile.linkedin %}
+                            <a href="{{ site_profile.linkedin }}" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        {% else %}
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                        {% endif %}
+                        
+                        {% if site_profile and site_profile.twitter %}
+                            <a href="{{ site_profile.twitter }}" target="_blank"><i class="fab fa-twitter"></i></a>
+                        {% else %}
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                        {% endif %}
+                        
+                        {% if site_profile and site_profile.other_social %}
+                            <a href="{{ site_profile.other_social }}" target="_blank"><i class="fab fa-dribbble"></i></a>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <h5>Quick Links</h5>
+                    <ul class="nav flex-column">
+                        <li class="nav-item"><a class="nav-link ps-0" href="{% url 'portfolio:index' %}">Home</a></li>
+                        <li class="nav-item"><a class="nav-link ps-0" href="{% url 'portfolio:about' %}">About</a></li>
+                        <li class="nav-item"><a class="nav-link ps-0" href="{% url 'portfolio:projects' %}">Projects</a></li>
+                        <li class="nav-item"><a class="nav-link ps-0" href="{% url 'portfolio:skills' %}">Skills</a></li>
+                        <li class="nav-item"><a class="nav-link ps-0" href="{% url 'portfolio:contact' %}">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Contact Info</h5>
+                    <address>
+                        <p>
+                            <i class="fas fa-map-marker-alt me-2"></i>
+                            {% if site_profile and site_profile.location %}
+                                {{ site_profile.location }}
+                            {% else %}
+                                New York, NY, United States
+                            {% endif %}
+                        </p>
+                        <p>
+                            <i class="fas fa-envelope me-2"></i>
+                            {% if site_profile and site_profile.email %}
+                                <a href="mailto:{{ site_profile.email }}">{{ site_profile.email }}</a>
+                            {% else %}
+                                <a href="mailto:jane@example.com">jane@example.com</a>
+                            {% endif %}
+                        </p>
+                        <p>
+                            <i class="fas fa-phone me-2"></i>
+                            {% if site_profile and site_profile.phone %}
+                                {{ site_profile.phone }}
+                            {% else %}
+                                +1 (555) 123-4567
+                            {% endif %}
+                        </p>
+                    </address>
+                </div>
+            </div>
+            <hr>
+            <div class="d-flex justify-content-between">
+                <p class="mb-0">© {% now "Y" %} {% if site_profile %}{{ site_profile.name }}{% else %}Jane Doe{% endif %}. All rights reserved.</p>
+                <div>
+                    <a href="#" class="text-muted me-3">Privacy Policy</a>
+                    <a href="#" class="text-muted">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to top button -->
+    <a href="#" class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <!-- Bootstrap JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Main JavaScript -->
+    <script src="{% static 'js/main.js' %}"></script>
+    
+    <!-- Page-specific JavaScript -->
+    {% block extra_js %}{% endblock %}
+</body>
+</html>
