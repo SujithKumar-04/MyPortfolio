@@ -1,4 +1,5 @@
 {% extends 'portfolio_app/base.html' %}
+{% load static %}
 
 {% block content %}
 <!-- Hero Section -->
@@ -6,8 +7,8 @@
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-6">
-                <h1 class="display-4 fw-bold mb-4">Hi, I'm {% if site_profile %}{{ site_profile.name }}{% else %}Jane Doe{% endif %}</h1>
-                <h2 class="h3 mb-4">{% if site_profile %}{{ site_profile.title }}{% else %}Web Developer & Data Science Enthusiast{% endif %}</h2>
+                <h1 class="display-4 fw-bold mb-4">Hi, I'm {% if site_profile %}{{ site_profile.name }}{% else %}Chepuri Sujith Kumar{% endif %}</h1>
+                <h2 class="h3 mb-4">{% if site_profile %}{{ site_profile.title }}{% else %}Web Developer & Fullstack Developer{% endif %}</h2>
                 <p class="lead mb-4">
                     {% if site_profile and site_profile.bio %}
                         {{ site_profile.bio|truncatewords:40 }}
@@ -17,11 +18,11 @@
                 </p>
                 <div class="d-flex gap-3">
                     <a href="{% url 'portfolio:contact' %}" class="btn btn-primary">Get In Touch</a>
-                    <a href="{% url 'portfolio:download_resume' %}" class="btn btn-outline-dark">Download Resume</a>
+                    <a href="{% static 'documents/Sujith(Resume).pdf' %}" class="btn btn-outline-dark">Download Resume</a>
                 </div>
             </div>
             <div class="col-lg-6 text-center d-none d-lg-block">
-                <img src="https://via.placeholder.com/500x500.svg?text=Portfolio+Image" alt="Profile Image" class="img-fluid rounded-circle hero-image">
+                <img src="static/images/mypic.svg" alt="Profile Image" class="img-fluid rounded-circle hero-image">
             </div>
         </div>
     </div>
@@ -36,7 +37,7 @@
         </div>
         <div class="row align-items-center">
             <div class="col-lg-5 mb-4 mb-lg-0">
-                <img src="https://via.placeholder.com/600x400.svg?text=About+Me" alt="About Me" class="img-fluid rounded shadow">
+                <img src="static\images\mypic.svg" alt="About Me" class="img-fluid rounded shadow">
             </div>
             <div class="col-lg-7">
                 <h3>{% if site_profile %}{{ site_profile.title }}{% else %}Web Developer & Data Science Enthusiast{% endif %}</h3>
@@ -96,10 +97,10 @@
                 <!-- Default projects if none are in database -->
                 <div class="col-md-4">
                     <div class="card project-card h-100">
-                        <img src="https://via.placeholder.com/600x400.svg?text=Project+1" class="card-img-top" alt="Personal Finance Dashboard">
+                        <img src="static/images/Sujith Kumar.png" class="card-img-top" alt="Personal Finance Dashboard">
                         <div class="card-body">
-                            <h5 class="card-title">Personal Finance Dashboard</h5>
-                            <p class="card-text">A comprehensive financial management tool with budgeting, expense tracking, and data visualization.</p>
+                            <h5 class="card-title">My Portfolio Website</h5>
+                            <p class="card-text">I’m a passionate developer with hands-on experience in building dynamic web applications, including the SpiritAdventures project. Certified in Static & Responsive Web Development, Databases, and a Python Fullstack course, I bring a strong foundation in both front-end and back-end technologies.</p>
                         </div>
                         <div class="card-footer bg-white border-0">
                             <a href="#" class="btn btn-sm btn-outline-dark me-2">
@@ -113,16 +114,16 @@
                 </div>
                 <div class="col-md-4">
                     <div class="card project-card h-100">
-                        <img src="https://via.placeholder.com/600x400.svg?text=Project+2" class="card-img-top" alt="Data Visualization Dashboard">
+                        <img src="static/images/spiritadventure.png" class="card-img-top" alt="Data Visualization Dashboard">
                         <div class="card-body">
-                            <h5 class="card-title">Data Visualization Dashboard</h5>
-                            <p class="card-text">Interactive dashboard for visualizing complex datasets with customizable charts and filters.</p>
+                            <h5 class="card-title">the SpiritAdventures</h5>
+                            <p class="card-text">SpiritAdventures is a dynamic travel website designed to book packages for exploring destinations across India. Built with Python Fullstack technologies like Django, HTML, CSS (with animations), and JavaScript, it offers an interactive and seamless user experience.</p>
                         </div>
                         <div class="card-footer bg-white border-0">
                             <a href="#" class="btn btn-sm btn-outline-dark me-2">
                                 <i class="fab fa-github"></i>
                             </a>
-                            <a href="#" class="btn btn-sm btn-outline-dark">
+                            <a href="https://spiritadventures.onrender.com/" class="btn btn-sm btn-outline-dark">
                                 <i class="fas fa-external-link-alt"></i>
                             </a>
                         </div>
@@ -130,10 +131,10 @@
                 </div>
                 <div class="col-md-4">
                     <div class="card project-card h-100">
-                        <img src="https://via.placeholder.com/600x400.svg?text=Project+3" class="card-img-top" alt="E-commerce Platform">
+                        <img src="static/images/raithusangam.png" class="card-img-top" alt="E-commerce Platform">
                         <div class="card-body">
-                            <h5 class="card-title">Food Delivery Platform</h5>
-                            <p class="card-text">A complete food ordering and delivery system with real-time tracking and payment integration.</p>
+                            <h5 class="card-title">Raithu Sangam</h5>
+                            <p class="card-text">This website is designed to support farmers and Raithu Sangam members by providing crop details, daily market prices, and member information. Built using Django, HTML, CSS, and JavaScript, it offers an interactive and user-friendly experience. The platform helps farmers stay informed and make better decisions for their agricultural activities.</p>
                         </div>
                         <div class="card-footer bg-white border-0">
                             <a href="#" class="btn btn-sm btn-outline-dark me-2">

@@ -17,11 +17,11 @@
     <link rel="stylesheet" href="{% static 'css/dark-mode.css' %}">
     
     <!-- Favicon -->
-    <link rel="icon" href="{% static 'images/favicon.svg' %}" type="image/svg+xml">
+    <link rel="icon" href="{% static 'images/lion.svg' %}" type="image/svg+xml">
 </head>
 <body>
     <!-- Animated Background -->
-    <div class="animated-background" id="animatedBackground"></div>
+    {% comment %} <div class="animated-background" id="animatedBackground"></div> {% endcomment %}
     
     <!-- Header with Navigation -->
     <header class="sticky-top">
@@ -32,7 +32,7 @@
                         {% if site_profile %}
                         <span class="logo-text">&lt; {{ site_profile.name }} /&gt;</span>
                         {% else %}
-                        <span class="logo-text">&lt; Jane Doe /&gt;</span>
+                        <span class="logo-text"> <img src="{% static "images/lion.svg" %}" alt="image/svg+xml" width="60" height="60"> SUJITH KUMAR </span>
                         {% endif %}
                     </a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
