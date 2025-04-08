@@ -1,6 +1,0 @@
-This is a placeholder for the resume PDF file.
-
-In a production environment, you would upload an actual PDF file through the Django admin interface.
-The file will be stored in the media directory and served to users when they click the 'Download Resume' button.
-
-For development purposes, modify the download_resume view to handle this placeholder scenario.
